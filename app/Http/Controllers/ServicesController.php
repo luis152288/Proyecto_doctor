@@ -13,7 +13,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = carousel::paginate();
+        $services = services::paginate();
         return view('services.index', compact('services'));
     }
 
