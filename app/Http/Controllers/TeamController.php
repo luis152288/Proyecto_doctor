@@ -13,7 +13,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $team = team::paginate();
+        return view('team.index', compact('team'));
     }
 
     /**
@@ -23,7 +24,8 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        $team = new About();
+        return view('team.create', compact('team'));
     }
 
     /**
@@ -34,7 +36,31 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file_route = null;
+
+        $this->validate($request, [
+            'imagen-file' => 'image|mimes:jpg,jpeg,png'
+        ]);
+
+        if($request->file('imagen-file')){
+            // Capturo la imagen
+            $img = $request->file('imagen-file');
+            // Obtengo el nombre real
+            $file_route = $img->getClientOriginalName();
+            // Almaceno la imagen en la carpeta
+            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
+        }else{
+            $file_route = "no-disponible.png";
+        }   
+
+        Team::create([
+            'imagen' => $file_route,
+            'nombre' => $request->input('nombre')
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect('/index')->with('mensaje', 'Creacion exitosa');
     }
 
     /**
@@ -56,7 +82,8 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Team = team::findOrFail($id);
+        return view('team.edit', compact('team'));
     }
 
     /**
@@ -68,7 +95,32 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file_route = null;
+
+        $this->validate($request, [
+            'imagen-file' => 'image|mimes:jpg,jpeg,png'
+        ]);
+
+        if($request->file('imagen-file')){
+            // Capturo la imagen
+            $img = $request->file('imagen-file');
+            // Obtengo el nombre real
+            $file_route = $img->getClientOriginalName();
+            // Almaceno la imagen en la carpeta
+            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
+        }else{
+            $file_route = "no-disponible.png";
+        }   
+
+        $service = Services::findOrFail($id);
+        $service->update([
+            'imagen' => $file_route,
+            'nombre' => $request->input('nombre'),
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect('/about')->with('mensaje', 'Cambios efectuados exitosamente');
     }
 
     /**

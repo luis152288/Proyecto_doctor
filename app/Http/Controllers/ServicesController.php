@@ -13,7 +13,8 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $services = carousel::paginate();
+        return view('services.index', compact('services'));
     }
 
     /**
@@ -23,7 +24,8 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+        $services = new About();
+        return view('services.create', compact('services'));
     }
 
     /**
@@ -34,7 +36,30 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file_route = null;
+
+        $this->validate($request, [
+            'imagen-file' => 'image|mimes:png,svg',
+        ]);
+
+        if($request->file('imagen-file')){
+            // Capturo la imagen
+            $img = $request->file('imagen-file');
+            // Obtengo el nombre real
+            $file_route = $img->getClientOriginalName();
+            // Almaceno la imagen en la carpeta
+            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
+        }else{
+            $file_route = "no-disponible.png";
+        }   
+
+        Services::create([
+            'imagen' => $file_route,
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect('/index')->with('mensaje', 'Creacion exitosa');
     }
 
     /**
@@ -56,7 +81,8 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Services = services::findOrFail($id);
+        return view('services.edit', compact('services'));
     }
 
     /**
@@ -68,7 +94,31 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file_route = null;
+
+        $this->validate($request, [
+            'imagen-file' => 'image|mimes:svg,png',
+        ]);
+
+        if($request->file('imagen-file')){
+            // Capturo la imagen
+            $img = $request->file('imagen-file');
+            // Obtengo el nombre real
+            $file_route = $img->getClientOriginalName();
+            // Almaceno la imagen en la carpeta
+            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
+        }else{
+            $file_route = "no-disponible.png";
+        }   
+
+        $service = Services::findOrFail($id);
+        $service->update([
+            'imagen' => $file_route,
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect('/about')->with('mensaje', 'Cambios efectuados exitosamente');
     }
 
     /**
@@ -79,6 +129,7 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Services::destroy($id);
+        return redirect('/index')->with('mensaje', 'Eliminado');
     }
 }

@@ -40,7 +40,7 @@ class CarouselController extends Controller
         $file_route = null;
 
         $this->validate($request, [
-            'imagen-file' => 'image|mimes:jpg,png,svg,jpeg',
+            'imagen-file' => 'image|mimes:jpg,jpeg,png',
         ]);
 
         if($request->file('imagen-file')){
@@ -55,13 +55,13 @@ class CarouselController extends Controller
             $file_route = "no-disponible.png";
         }   
 
-        Curso::create([
+        Carousel::create([
             'imagen' => $file_route,
             'titulo' => $request->input('titulo'),
             'descripcion' => $request->input('descripcion'),
         ]);
 
-        return redirect('/index')->with('mensaje', 'Carousel creado');
+        return redirect('/index')->with('mensaje', 'creacion exitosa');
     }
 
     /**
@@ -99,7 +99,7 @@ class CarouselController extends Controller
         $file_route = null;
 
         $this->validate($request, [
-            'imagen-file' => 'image|mimes:jpg,png,svg,jpeg',
+            'imagen-file' => 'image|mimes:jpg,jpeg,png',
         ]);
 
         if($request->file('imagen-file')){
@@ -122,7 +122,7 @@ class CarouselController extends Controller
             'status' => $request->input('status'),
         ]);
 
-        return redirect('/cursos')->with('mensaje', 'Carousel Modificado');
+        return redirect('/carousel')->with('mensaje', 'Cambios guardados satisfactoriamente');
     }
     /**
      * Remove the specified resource from storage.
@@ -133,6 +133,6 @@ class CarouselController extends Controller
     public function destroy($id)
     {
         Carousel::destroy($id);
-        return redirect('/index')->with('mensaje', 'Carousel Eliminado');
+        return redirect('/index')->with('mensaje', 'Imagen Eliminada');
     }
 }
