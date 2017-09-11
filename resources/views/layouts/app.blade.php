@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
     <style type="text/css">
         .secciones{
             font-size: 18px;
@@ -35,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Doctor') }}
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
@@ -44,7 +45,7 @@
                     <ul class="nav navbar-nav">
                         @if(Auth::user())
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle secciones" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Secciones</a>
+                            <a class="nav-link dropdown-toggle secciones" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Secciones <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                             <div class="dropdown-menu">
                               <a class="dropdown-item" href="{{ url ('/carousel/index')}}">Carousel</a><br>
                               <a class="dropdown-item" href="{{ url ('/about/index')}}">About</a><br>
