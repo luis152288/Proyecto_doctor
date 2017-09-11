@@ -12,6 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+        .secciones{
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -29,14 +35,24 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Doctor') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if(Auth::user())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle secciones" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Secciones</a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="{{ url ('/carousel/index')}}">Carousel</a><br>
+                              <a class="dropdown-item" href="{{ url ('/about/index')}}">About</a><br>
+                              <a class="dropdown-item" href="{{ url ('/services/index')}}">Services</a><br>
+                              <a class="dropdown-item" href="{{ url ('/team/index')}}">Team</a><br>
+                            </div>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

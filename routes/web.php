@@ -23,12 +23,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Route::resource('/carousel', 'CarouselController')->name([
-	'index'->'carousel',
-	'create' => 'carousel.create',
-    'store' => 'carousel.store',
-    'show' => 'carousel.show',
-    'edit' => 'carousel.edit',
-    'update' => 'carousel.update',
-    'destroy' => 'carousel.destroy',
-	]);*/
+Route::resource('/carousel', 'CarouselController');
+
+Route::resource('/about', 'AboutController');
+
+Route::resource('/service', 'ServicesController');
+
+Route::resource('/team', 'TeamController');
+

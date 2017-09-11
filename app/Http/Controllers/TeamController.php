@@ -13,7 +13,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = team::paginate();
+        $team = Team::paginate();
         return view('team.index', compact('team'));
     }
 
@@ -56,7 +56,7 @@ class TeamController extends Controller
 
         Team::create([
             'imagen' => $file_route,
-            'nombre' => $request->input('nombre')
+            'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
         ]);
 
@@ -82,7 +82,7 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        $Team = team::findOrFail($id);
+        $team = Team::findOrFail($id);
         return view('team.edit', compact('team'));
     }
 
@@ -131,6 +131,7 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Team::destroy($id);
+        return redirect('/team')->with('mensaje', 'Eliminado exitosamente');
     }
 }
