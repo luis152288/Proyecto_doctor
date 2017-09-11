@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services;
 
 class ServicesController extends Controller
 {
@@ -13,7 +14,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = services::paginate();
+        $services = Services::paginate();
         return view('services.index', compact('services'));
     }
 
@@ -24,7 +25,7 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        $services = new About();
+        $services = new Services();
         return view('services.create', compact('services'));
     }
 
@@ -36,30 +37,28 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        $file_route = null;
+         $file_route = null;
 
-        $this->validate($request, [
-            'imagen-file' => 'image|mimes:png,svg',
-        ]);
-
+        $this->validate($request,[
+            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            ]);
         if($request->file('imagen-file')){
-            // Capturo la imagen
+            //capturando imagen
             $img = $request->file('imagen-file');
-            // Obtengo el nombre real
+            //obtener nombre
             $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
+            //almacenamiento
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
         }else{
-            $file_route = "no-disponible.png";
-        }   
+        $file_route= "no-disponible.png";
+    }
 
-        Services::create([
-            'imagen' => $file_route,
-            'descripcion' => $request->input('descripcion'),
+    Services::create([
+        'imagen' => $file_route,
+        'descripcion' => $request->input('descripcion'),
         ]);
 
-        return redirect('/index')->with('mensaje', 'Creacion exitosa');
+        return redirect('/index')->with('mensaje', 'creacion exitosa');
     }
 
     /**
@@ -81,7 +80,7 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $Services = services::findOrFail($id);
+        $services = Services::findOrFail($id);
         return view('services.edit', compact('services'));
     }
 
@@ -94,32 +93,30 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file_route = null;
+         $file_route = null;
 
-        $this->validate($request, [
-            'imagen-file' => 'image|mimes:svg,png',
-        ]);
-
-        if($request->file('imagen-file')){
-            // Capturo la imagen
+        $this->validate($request,[
+            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            ]);
+        if ($request->file('imagen-file')) {
+            #captura de imagen
             $img = $request->file('imagen-file');
-            // Obtengo el nombre real
+            #optener nombre de archivo
             $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
+            #alamcenar imagen
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
         }else{
             $file_route = "no-disponible.png";
-        }   
-
-        $service = Services::findOrFail($id);
-        $service->update([
-            'imagen' => $file_route,
+        }
+        $services = Carousel::findOrFail($id);
+        $services->apdate([
+            'imagen'=> $file_route,
             'descripcion' => $request->input('descripcion'),
-        ]);
+            ]);
 
-        return redirect('/about')->with('mensaje', 'Cambios efectuados exitosamente');
+        return redirect('/services')->with('mensaje', 'cambios efectuados exitosamente');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -130,6 +127,6 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         Services::destroy($id);
-        return redirect('/index')->with('mensaje', 'Eliminado');
+        return redirect('/index')->with('mensaje', 'eliminado');
     }
 }

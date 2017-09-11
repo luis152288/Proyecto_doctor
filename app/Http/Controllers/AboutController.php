@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\About;
 
 class AboutController extends Controller
 {
@@ -13,8 +14,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about = about::paginate();
-        return view('about.index', compact('services'));
+        $about = About::paginate();
+        return view('about.index', compact('about'));
     }
 
     /**
@@ -24,8 +25,8 @@ class AboutController extends Controller
      */
     public function create()
     {
-        $about = new About();
-        return view('about.create', compact('about'));
+        $about= new About();
+        return view('about.create',compact('about'));
     }
 
     /**
@@ -38,31 +39,29 @@ class AboutController extends Controller
     {
         $file_route = null;
 
-        $this->validate($request, [
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
-        ]);
-
+        $this->validate($request,[
+        	'imagen-file' => 'image|mimes:jpg,jpeg,png',
+        	]);
         if($request->file('imagen-file')){
-            // Capturo la imagen
-            $img = $request->file('imagen-file');
-            // Obtengo el nombre real
-            $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
-            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
+        	//capturando imagen
+        	$img = $request->file('imagen-file');
+        	//obtener nombre
+        	$file_route = $img->getClientOriginalName();
+        	//almacenamiento
+        	Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
         }else{
-            $file_route = "no-disponible.png";
-        }   
-
-        About::create([
-            'imagen' => $file_route,
-            'letra' => $request->input('letra'),
-            'titulo' => $request->input('titulo'),
-            'descripcion' => $request->input('descripcion'),
-        ]);
-
-        return redirect('/index')->with('mensaje', 'creacion exitosa');
+        $file_route= "no-disponible.png";
     }
+
+    About::create([
+    	'imagen' => $file_route,
+    	'letra' => $request->input('letra'),
+    	'titulo' => $request->input('titulo'),
+    	'descripcion' => $request->input('descripcion'),
+    	]);
+
+    	return redirect('/index')->with('mensaje', 'creacion exitosa');
+	}
 
     /**
      * Display the specified resource.
@@ -83,7 +82,7 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $About = Carousel::findOrFail($id);
+        $about = About::findOrFail($id);
         return view('about.edit', compact('about'));
     }
 
@@ -98,31 +97,28 @@ class AboutController extends Controller
     {
         $file_route = null;
 
-        $this->validate($request, [
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
-        ]);
-
-        if($request->file('imagen-file')){
-            // Capturo la imagen
-            $img = $request->file('imagen-file');
-            // Obtengo el nombre real
-            $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
-            Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
+        $this->validate($request,[
+        	'imagen-file' => 'image|mimes:jpg,jpeg,png',
+        	]);
+        if ($request->file('imagen-file')) {
+        	#captura de imagen
+        	$img = $request->file('imagen-file');
+        	#optener nombre de archivo
+        	$file_route = $img->getClientOriginalName();
+        	#alamcenar imagen
+        	Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
         }else{
-            $file_route = "no-disponible.png";
-        }   
+        	$file_route = "no-disponible.png";
+        }
+        $about = About::findOrFail($id);
+        $about->apdate([
+        	'imagen'=> $file_route,
+        	'letra' => $request->input('letra'),
+        	'titulo' => $request->input('titulo'),
+        	'descripcion' => $request->input('descripcion'),
+        	]);
 
-        $carousel = Carousel::findOrFail($id);
-        $carousel->update([
-            'imagen' => $file_route,
-            "letra"=>$request->input("letra"),
-            'titulo' => $request->input('titulo'),
-            'descripcion' => $request->input('descripcion'),
-        ]);
-
-        return redirect('/about')->with('mensaje', 'Cambios efectuados exitosamente');
+        return redirect('/about')->with('mensaje', 'cambios efectuados exitosamente');
     }
 
     /**
@@ -133,7 +129,7 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        Carousel::destroy($id);
-        return redirect('/index')->with('mensaje', 'Eliminado');
+       About::destroy($id);
+       return redirect('/index')->with('mensaje', 'eliminado');
     }
 }

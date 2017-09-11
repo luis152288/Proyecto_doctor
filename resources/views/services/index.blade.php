@@ -13,7 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Servicios</div>
                 <div class="panel-body">
-					<a href="{{ url('/servicies/create') }}" class="btn btn-primary">Crear servicio</a><hr>
+					<a href="{{ url('/services/create') }}" class="btn btn-primary">Crear servicio</a><hr>
                     <table class="table table-bordered">
                     	<tr>
                     		<th>ID</th>
@@ -24,7 +24,7 @@
 						@foreach($services as $services)
 							<tr>
 								<td>{{ $services->id}}</td>
-								<td><img src="{{ asset('imagenIndex/'.$servicies->imagen) }}" alt="" class="img-responsive" width="100"></td>
+								<td><img src="{{ asset('imagenIndex/'.$services->imagen) }}" alt="" class="img-responsive" width="100"></td>
 								<td>{{ $services->imagen}}</td>
 								<td>{{ $services->descripcion}}</td>
 								<td>
@@ -46,7 +46,7 @@
 							</tr>
 						@endforeach
 						<tr>
-							<td colspan="8">{{ $carousel->links() }}</td>
+							<td colspan="8">{{ $services->links() }}</td>
 						</tr>
                     </table>
                 </div>

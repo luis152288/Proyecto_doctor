@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\carousel;
+use App\Carousel;
 
 class CarouselController extends Controller
 {
@@ -14,7 +14,7 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $carousel = carousel::paginate();
+        $carousel = Carousel::paginate();
         return view('carousel.index', compact('carousel'));
     }
 
@@ -25,8 +25,8 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        $carousel = new Carousel();
-        return view('carousel.create', compact('carousel'));
+        $carousel= new Carousel();
+        return view('carousel.create',compact('carousel'));
     }
 
     /**
@@ -39,26 +39,24 @@ class CarouselController extends Controller
     {
         $file_route = null;
 
-        $this->validate($request, [
+        $this->validate($request,[
             'imagen-file' => 'image|mimes:jpg,jpeg,png',
-        ]);
-
+            ]);
         if($request->file('imagen-file')){
-            // Capturo la imagen
+            //capturando imagen
             $img = $request->file('imagen-file');
-            // Obtengo el nombre real
+            //obtener nombre
             $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
+            //almacenamiento
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
         }else{
-            $file_route = "no-disponible.png";
-        }   
+        $file_route= "no-disponible.png";
+    }
 
-        Carousel::create([
-            'imagen' => $file_route,
-            'titulo' => $request->input('titulo'),
-            'descripcion' => $request->input('descripcion'),
+    Carousel::create([
+        'imagen' => $file_route,
+        'titulo' => $request->input('titulo'),
+        'descripcion' => $request->input('descripcion'),
         ]);
 
         return redirect('/index')->with('mensaje', 'creacion exitosa');
@@ -72,7 +70,7 @@ class CarouselController extends Controller
      */
     public function show($id)
     {
-        //preguntar por que esto es vacio
+        //
     }
 
     /**
@@ -83,8 +81,8 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        $carousel = Carousel::findOrFail($id);
-        return view('index.edit', compact('carousel'));
+         $carousel = Carousel::findOrFail($id);
+        return view('carousel.edit', compact('carousel'));
     }
 
     /**
@@ -96,34 +94,31 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file_route = null;
+         $file_route = null;
 
-        $this->validate($request, [
+        $this->validate($request,[
             'imagen-file' => 'image|mimes:jpg,jpeg,png',
-        ]);
-
-        if($request->file('imagen-file')){
-            // Capturo la imagen
+            ]);
+        if ($request->file('imagen-file')) {
+            #captura de imagen
             $img = $request->file('imagen-file');
-            // Obtengo el nombre real
+            #optener nombre de archivo
             $file_route = $img->getClientOriginalName();
-            // Almaceno la imagen en la carpeta
+            #alamcenar imagen
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
-
         }else{
             $file_route = "no-disponible.png";
-        }   
-
+        }
         $carousel = Carousel::findOrFail($id);
-        $carousel->update([
-            'imagen' => $file_route,
+        $carousel->apdate([
+            'imagen'=> $file_route,
             'titulo' => $request->input('titulo'),
             'descripcion' => $request->input('descripcion'),
-            'status' => $request->input('status'),
-        ]);
+            ]);
 
-        return redirect('/carousel')->with('mensaje', 'Cambios guardados satisfactoriamente');
+        return redirect('/carousel')->with('mensaje', 'cambios efectuados exitosamente');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -132,7 +127,8 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
+        
         Carousel::destroy($id);
-        return redirect('/index')->with('mensaje', 'Imagen Eliminada');
+        return redirect('/index')->with('mensaje', 'eliminado');
     }
 }

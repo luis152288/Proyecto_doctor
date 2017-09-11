@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class caroussel extends Model
+class Carousel extends Model
 {
-   protected $fillable = [ 'imagen', 'titulo', 'descripcion' ];
-
+	protected $table = "carousel";
+	protected $fillable = [ 'imagen', 'titulo', 'descripcion' ];
 }

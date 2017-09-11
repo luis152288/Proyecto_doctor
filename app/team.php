@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class team extends Model
+class Team extends Model
 {
-   protected $fillable = [ 'imagen', 'nombre', 'descripcion' ];
+	protected $table = "team";
+	protected $fillable = [ 'imagen', 'nombre', 'descripcion' ];
 }

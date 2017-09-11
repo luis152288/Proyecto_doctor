@@ -22,7 +22,7 @@
                     		<th>DESCRIPCION</th>
                     		<th colspan="2" width="10%">ACCIONES</th>
                     	</tr>
-						@foreach($services as $services)
+						@foreach($team as $team)
 							<tr>
 								<td>{{ $services->id}}</td>
 								<td><img src="{{ asset('imagenIndex/'.$team->imagen) }}" alt="" class="img-responsive" width="100"></td>
@@ -48,7 +48,7 @@
 							</tr>
 						@endforeach
 						<tr>
-							<td colspan="8">{{ $carousel->links() }}</td>
+							<td colspan="8">{{ $team->links() }}</td>
 						</tr>
                     </table>
                 </div>

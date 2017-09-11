@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Crear Carrousel de imagenes</div>
                 <div class="panel-body">
-					<form action="{{ url('/carousel') }}" class="form-vertical" method="post" enctype="multipart/form-data">
+					<form action="{{ url('/carousel') }}" class="form-vertical" method="post" enctype="/form-data">
 						{{ method_field('POST')}}
 						{{ csrf_field() }}
 						@include('carousel.partial.form')

@@ -21,7 +21,7 @@
                           <img src="img/item3.jpg" alt="...">
                           <div class="caption">
                             <h3>Carousel</h3>
-                           <a href="{{ url('/carousel/index')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                           <a href="{{ url('/carousel')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
                           </div>
                         </div>
                       </div>
@@ -35,7 +35,7 @@
                           <img src="img/item3.jpg" alt="...">
                           <div class="caption">
                             <h3>About</h3>
-                           <a href="{{ url('/about/index')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                           <a href="{{ url('/about')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
                           </div>
                         </div>
                       </div>
@@ -49,7 +49,7 @@
                           <img src="img/item3.jpg" alt="...">
                           <div class="caption">
                             <h3>Services</h3>
-                            <a href="{{ url('/services/index')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                            <a href="{{ url('/services')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
                           </div>
                         </div>
                       </div>
@@ -63,7 +63,7 @@
                           <img src="img/item3.jpg" alt="...">
                           <div class="caption">
                             <h3>Team</h3>
-                            <a href="{{ url('/team/index')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                            <a href="{{ url('/team')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
                           </div>
                         </div>
                       </div>

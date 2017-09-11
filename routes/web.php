@@ -27,7 +27,7 @@ Route::resource('/carousel', 'CarouselController');
 
 Route::resource('/about', 'AboutController');
 
-Route::resource('/service', 'ServicesController');
+Route::resource('/services', 'ServicesController');
 
 Route::resource('/team', 'TeamController');
 
