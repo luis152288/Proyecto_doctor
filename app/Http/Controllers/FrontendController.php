@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\About;
+use App\Carousel;
+use App\Services;
+use App\Team;
 
 class FrontendController extends Controller
 {
