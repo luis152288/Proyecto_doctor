@@ -43,6 +43,11 @@ return [
 
     'disks' => [
 
+        'imagenIndex' => [
+        'driver' => 'local',
+        'root' => public_path('imagenIndex'),    
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

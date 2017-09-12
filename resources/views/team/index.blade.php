@@ -18,6 +18,7 @@
                     	<tr>
                     		<th>ID</th>
                     		<th width="15%">IMAGEN</th>
+                    		<th>ARCHIVO</th>
                     		<th>NOMBRE</th>
                     		<th>DESCRIPCION</th>
                     		<th colspan="2" width="10%">ACCIONES</th>

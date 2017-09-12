@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Editar Carrousel de imagenes</div>
+                <div class="panel-heading">Editar Carousel de imagenes</div>
                 <div class="panel-body">
 					<form action="{{ url('/carousel'.$carousel->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
-						{{ method_field('PUT')}}
+						{{ method_field('PUT') }}
 						{{ csrf_field() }}
 						@include('carousel.partial.form')
 						<div class="form-group">

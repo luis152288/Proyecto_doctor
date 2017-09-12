@@ -18,6 +18,7 @@
                     	<tr>
                     		<th>ID</th>
                     		<th width="15%">IMAGEN</th>
+                    		<th>ARCHIVO</th>
                     		<th>LETRA</th>
                     		<th>TITULO</th>
                     		<th>DESCRIPCION</th>

@@ -18,6 +18,7 @@
                     	<tr>
                     		<th>ID</th>
                     		<th width="15%">IMAGEN</th>
+                    		<th>ARCHIVO</th>
                     		<th>TITULO</th>
                     		<th>DESCRIPCION</th>
                     		<th colspan="2" width="10%">ACCIONES</th>
@@ -40,8 +41,8 @@
                                                      document.getElementById('delete-carousel-form').submit();">
 										<i class="fa fa-trash"></i>
 									</a>
-									<form id="delete-carousel-form" action="{{ url('/carousel/'.$carousel->id) }}" method="post">
-										{{ method_field('DELETE')}}
+									<form id="delete-carousel-form" action="{{ url('/carousel'.$carousel->id) }}" method="post">
+										{{ method_field('DELETE') }}
 										{{ csrf_field() }}						
 									</form>
 								</td>

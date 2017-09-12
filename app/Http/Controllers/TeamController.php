@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Team;
 
@@ -40,15 +41,17 @@ class TeamController extends Controller
         $file_route = null;
 
         $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            'imagen' => 'image|mimes:jpg,jpeg,png',
             ]);
-        if($request->file('imagen-file')){
+
+        if($request->file('imagen')){
             //capturando imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             //obtener nombre
             $file_route = $img->getClientOriginalName();
             //almacenamiento
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+            
         }else{
         $file_route= "no-disponible.png";
     }
@@ -59,7 +62,7 @@ class TeamController extends Controller
         'descripcion' => $request->input('descripcion'),
         ]);
 
-        return redirect('/index')->with('mensaje', 'creacion exitosa');
+        return redirect('/team')->with('mensaje', 'creacion exitosa');
     }
 
     /**
@@ -106,11 +109,13 @@ class TeamController extends Controller
             $file_route = $img->getClientOriginalName();
             #alamcenar imagen
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
             $file_route = "no-disponible.png";
         }
+        
         $team = Carousel::findOrFail($id);
-        $team->apdate([
+        $team->update([
             'imagen'=> $file_route,
             'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
@@ -128,6 +133,6 @@ class TeamController extends Controller
     public function destroy($id)
     {
         Team::destroy($id);
-        return redirect('/index')->with('mensaje', 'eliminado');
+        return redirect('/team')->with('mensaje', 'eliminado');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Services;
 
@@ -40,15 +41,17 @@ class ServicesController extends Controller
          $file_route = null;
 
         $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            'imagen' => 'image|mimes:jpg,jpeg,png',
             ]);
-        if($request->file('imagen-file')){
+
+        if($request->file('imagen')){
             //capturando imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             //obtener nombre
             $file_route = $img->getClientOriginalName();
             //almacenamiento
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
         $file_route= "no-disponible.png";
     }
@@ -58,7 +61,7 @@ class ServicesController extends Controller
         'descripcion' => $request->input('descripcion'),
         ]);
 
-        return redirect('/index')->with('mensaje', 'creacion exitosa');
+        return redirect('/services')->with('mensaje', 'creacion exitosa');
     }
 
     /**
@@ -96,20 +99,23 @@ class ServicesController extends Controller
          $file_route = null;
 
         $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            'imagen' => 'image|mimes:jpg,jpeg,png',
             ]);
-        if ($request->file('imagen-file')) {
+
+        if ($request->file('imagen')) {
             #captura de imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             #optener nombre de archivo
             $file_route = $img->getClientOriginalName();
             #alamcenar imagen
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
             $file_route = "no-disponible.png";
         }
-        $services = Carousel::findOrFail($id);
-        $services->apdate([
+
+        $services = Services::findOrFail($id);
+        $services->update([
             'imagen'=> $file_route,
             'descripcion' => $request->input('descripcion'),
             ]);
@@ -127,6 +133,6 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         Services::destroy($id);
-        return redirect('/index')->with('mensaje', 'eliminado');
+        return redirect('/services')->with('mensaje', 'eliminado');
     }
 }

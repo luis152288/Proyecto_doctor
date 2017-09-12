@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Carousel;
 
@@ -39,16 +40,18 @@ class CarouselController extends Controller
     {
         $file_route = null;
 
-        $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
-            ]);
-        if($request->file('imagen-file')){
+        $this->validate($request, [
+            'imagen' => 'image|mimes:jpg,jpeg,png',
+        ]);
+
+        if($request->file('imagen')){
             //capturando imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             //obtener nombre
             $file_route = $img->getClientOriginalName();
             //almacenamiento
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
         $file_route= "no-disponible.png";
     }
@@ -56,7 +59,7 @@ class CarouselController extends Controller
     Carousel::create([
         'imagen' => $file_route,
         'titulo' => $request->input('titulo'),
-        'descripcion' => $request->input('descripcion'),
+        'subtitulo' => $request->input('subtitulo'),
         ]);
 
         return redirect('/index')->with('mensaje', 'creacion exitosa');
@@ -106,14 +109,16 @@ class CarouselController extends Controller
             $file_route = $img->getClientOriginalName();
             #alamcenar imagen
             Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
             $file_route = "no-disponible.png";
         }
+        
         $carousel = Carousel::findOrFail($id);
-        $carousel->apdate([
+        $carousel->update([
             'imagen'=> $file_route,
             'titulo' => $request->input('titulo'),
-            'descripcion' => $request->input('descripcion'),
+            'subtitulo' => $request->input('subtitulo'),
             ]);
 
         return redirect('/carousel')->with('mensaje', 'cambios efectuados exitosamente');

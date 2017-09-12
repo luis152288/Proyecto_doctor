@@ -49,7 +49,7 @@
                           <img src="img/item3.jpg" alt="...">
                           <div class="caption">
                             <h3>Services</h3>
-                            <a href="{{ url('/services')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                            <a href="{{ url('/services') }}" class="btn btn-primary btn-md" role="button">Ingresar</a>
                           </div>
                         </div>
                       </div>

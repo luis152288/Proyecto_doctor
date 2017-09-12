@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Crear</div>
                 <div class="panel-body">
-					<form action="{{ url('/About') }}" class="form-vertical" method="post" enctype="multipart/form-data">
+					<form action="{{ url('/about') }}" class="form-vertical" method="post" enctype="multipart/form-data">
 						{{ method_field('POST')}}
 						{{ csrf_field() }}
 						@include('about.partial.form')

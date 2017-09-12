@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\About;
 
@@ -40,15 +41,17 @@ class AboutController extends Controller
         $file_route = null;
 
         $this->validate($request,[
-        	'imagen-file' => 'image|mimes:jpg,jpeg,png',
+        	'imagen' => 'image|mimes:jpg,jpeg,png',
         	]);
-        if($request->file('imagen-file')){
+
+        if($request->file('imagen')){
         	//capturando imagen
-        	$img = $request->file('imagen-file');
+        	$img = $request->file('imagen');
         	//obtener nombre
         	$file_route = $img->getClientOriginalName();
         	//almacenamiento
         	Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
         $file_route= "no-disponible.png";
     }
@@ -57,7 +60,7 @@ class AboutController extends Controller
     	'imagen' => $file_route,
     	'letra' => $request->input('letra'),
     	'titulo' => $request->input('titulo'),
-    	'descripcion' => $request->input('descripcion'),
+    	'subtitulo' => $request->input('subtitulo'),
     	]);
 
     	return redirect('/index')->with('mensaje', 'creacion exitosa');
@@ -98,24 +101,27 @@ class AboutController extends Controller
         $file_route = null;
 
         $this->validate($request,[
-        	'imagen-file' => 'image|mimes:jpg,jpeg,png',
+        	'imagen' => 'image|mimes:jpg,jpeg,png',
         	]);
-        if ($request->file('imagen-file')) {
+
+        if ($request->file('imagen')) {
         	#captura de imagen
-        	$img = $request->file('imagen-file');
+        	$img = $request->file('imagen');
         	#optener nombre de archivo
         	$file_route = $img->getClientOriginalName();
         	#alamcenar imagen
         	Storage::disk('imagenIndex')->put($file_route,file_get_contents($img->getRealPath()));
+
         }else{
         	$file_route = "no-disponible.png";
         }
+        
         $about = About::findOrFail($id);
-        $about->apdate([
+        $about->update([
         	'imagen'=> $file_route,
         	'letra' => $request->input('letra'),
         	'titulo' => $request->input('titulo'),
-        	'descripcion' => $request->input('descripcion'),
+        	'subtitulo' => $request->input('subtitulo'),
         	]);
 
         return redirect('/about')->with('mensaje', 'cambios efectuados exitosamente');

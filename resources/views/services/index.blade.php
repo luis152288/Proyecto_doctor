@@ -18,8 +18,9 @@
                     	<tr>
                     		<th>ID</th>
                     		<th width="15%">IMAGEN</th>
+                    		<th>ARCHIVO</th>
                     		<th>DESCRIPCION</th>
-                    		<th colspan="2" width="10%">ACCIONES</th>
+                    		<th colspan="3" width="10%">ACCIONES</th>
                     	</tr>
 						@foreach($services as $services)
 							<tr>
@@ -45,9 +46,7 @@
 								</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td colspan="8">{{ $services->links() }}</td>
-						</tr>
+						
                     </table>
                 </div>
             </div>
