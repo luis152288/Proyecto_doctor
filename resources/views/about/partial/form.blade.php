@@ -8,11 +8,11 @@
     @endif
 </div>
 <div class="form-group">
-	<input type="text" class="form-control" id="letra" placeholder="Ingresa letra" value="{{ $about->letra or old('letra') }}">
+	<input type="text" class="form-control" id="letra" name="letra" placeholder="Ingresa letra" value="{{ $about->letra or old('letra') }}">
 </div>
 <div class="form-group">
-	<input type="text" class="form-control" id="titulo" name="nombre" placeholder="Ingresar titulo" value="{{ $about->titulo or old('titulo') }}">
+	<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingresar titulo" value="{{ $about->titulo or old('titulo') }}">
 </div>
 <div class="form-group">
-	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion" value="{{ $about->descripcion or old('descripcion') }}">
+	<input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder=" Ingrese Descripcion" value="{{ $about->subtitulo or old('subtitulo') }}">
 </div>

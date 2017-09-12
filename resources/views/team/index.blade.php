@@ -25,7 +25,7 @@
                     	</tr>
 						@foreach($team as $team)
 							<tr>
-								<td>{{ $services->id}}</td>
+								<td>{{ $team->id}}</td>
 								<td><img src="{{ asset('imagenIndex/'.$team->imagen) }}" alt="" class="img-responsive" width="100"></td>
 								<td>{{ $team->imagen}}</td>
 								<td>{{ $team->nombre}}</td>
@@ -48,9 +48,6 @@
 								</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td colspan="8">{{ $team->links() }}</td>
-						</tr>
                     </table>
                 </div>
             </div>

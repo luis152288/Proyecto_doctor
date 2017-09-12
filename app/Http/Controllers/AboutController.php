@@ -63,7 +63,7 @@ class AboutController extends Controller
     	'subtitulo' => $request->input('subtitulo'),
     	]);
 
-    	return redirect('/index')->with('mensaje', 'creacion exitosa');
+    	return redirect('/about')->with('mensaje', 'creacion exitosa');
 	}
 
     /**
@@ -136,6 +136,6 @@ class AboutController extends Controller
     public function destroy($id)
     {
        About::destroy($id);
-       return redirect('/index')->with('mensaje', 'eliminado');
+       return redirect('/about')->with('mensaje', 'eliminado');
     }
 }

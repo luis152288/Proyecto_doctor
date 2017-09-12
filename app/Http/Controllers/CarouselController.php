@@ -62,7 +62,7 @@ class CarouselController extends Controller
         'subtitulo' => $request->input('subtitulo'),
         ]);
 
-        return redirect('/index')->with('mensaje', 'creacion exitosa');
+        return redirect('/carousel')->with('mensaje', 'creacion exitosa');
     }
 
     /**
@@ -100,11 +100,11 @@ class CarouselController extends Controller
          $file_route = null;
 
         $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            'imagen' => 'image|mimes:jpg,jpeg,png',
             ]);
-        if ($request->file('imagen-file')) {
+        if ($request->file('imagen')) {
             #captura de imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             #optener nombre de archivo
             $file_route = $img->getClientOriginalName();
             #alamcenar imagen
@@ -134,6 +134,6 @@ class CarouselController extends Controller
     {
         
         Carousel::destroy($id);
-        return redirect('/index')->with('mensaje', 'eliminado');
+        return redirect('/carousel')->with('mensaje', 'eliminado');
     }
 }

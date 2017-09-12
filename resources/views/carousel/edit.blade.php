@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar Carousel de imagenes</div>
                 <div class="panel-body">
-					<form action="{{ url('/carousel'.$carousel->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
+					<form action="{{ url('/carousel/'.$carousel->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
 						{{ method_field('PUT') }}
 						{{ csrf_field() }}
 						@include('carousel.partial.form')

@@ -7,10 +7,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar integrante</div>
                 <div class="panel-body">
-					<form action="{{ url('/team' $team->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
+					<form action="{{ url('/team/' .$team->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
 						{{ method_field('PUT')}}
 						{{ csrf_field() }}
-						@include('services.partial.form')
+						@include('team.partial.form')
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary form-control">
 								Guardar

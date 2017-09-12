@@ -100,11 +100,11 @@ class TeamController extends Controller
          $file_route = null;
 
         $this->validate($request,[
-            'imagen-file' => 'image|mimes:jpg,jpeg,png',
+            'imagen' => 'image|mimes:jpg,jpeg,png',
             ]);
-        if ($request->file('imagen-file')) {
+        if ($request->file('imagen')) {
             #captura de imagen
-            $img = $request->file('imagen-file');
+            $img = $request->file('imagen');
             #optener nombre de archivo
             $file_route = $img->getClientOriginalName();
             #alamcenar imagen
@@ -114,7 +114,7 @@ class TeamController extends Controller
             $file_route = "no-disponible.png";
         }
         
-        $team = Carousel::findOrFail($id);
+        $team = Team::findOrFail($id);
         $team->update([
             'imagen'=> $file_route,
             'nombre' => $request->input('nombre'),

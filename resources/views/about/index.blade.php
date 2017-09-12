@@ -26,12 +26,12 @@
                     	</tr>
 						@foreach($about as $about)
 							<tr>
-								<td>{{ $carousel->id}}</td>
+								<td>{{ $about->id}}</td>
 								<td><img src="{{ asset('imagenIndex/'.$about->imagen) }}" alt="" class="img-responsive" width="100"></td>
 								<td>{{ $about->imagen}}</td>
 								<td>{{ $about->letra}}</td>
 								<td>{{ $about->titulo}}</td>
-								<td>{{ $about->descripcion}}</td>
+								<td>{{ $about->subtitulo}}</td>
 								<td>
 									<a href="{{ url('/about/' . $about->id . '/edit') }}" class="btn btn-info">
 										<i class="fa fa-edit"></i>
@@ -50,9 +50,6 @@
 								</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td colspan="8">{{ $about->links() }}</td>
-						</tr>
                     </table>
                 </div>
             </div>

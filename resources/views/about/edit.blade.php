@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar</div>
                 <div class="panel-body">
-					<form action="{{ url('/about' $about->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
+					<form action="{{ url('/about/' .$about->id) }}" class="form-vertical" method="post" enctype="multipart/form-data">
 						{{ method_field('PUT')}}
 						{{ csrf_field() }}
 						@include('about.partial.form')

@@ -29,7 +29,7 @@
 								<td><img src="{{ asset('imagenIndex/'.$carousel->imagen) }}" alt="" class="img-responsive" width="100"></td>
 								<td>{{ $carousel->imagen}}</td>
 								<td>{{ $carousel->titulo }}</td>
-								<td>{{ $carousel->descripcion}}</td>
+								<td>{{ $carousel->subtitulo }}</td>
 								<td>
 									<a href="{{ url('/carousel/' . $carousel->id . '/edit') }}" class="btn btn-info">
 										<i class="fa fa-edit"></i>
@@ -41,16 +41,13 @@
                                                      document.getElementById('delete-carousel-form').submit();">
 										<i class="fa fa-trash"></i>
 									</a>
-									<form id="delete-carousel-form" action="{{ url('/carousel'.$carousel->id) }}" method="post">
+									<form id="delete-carousel-form" action="{{ url('/carousel/'.$carousel->id) }}" method="post">
 										{{ method_field('DELETE') }}
 										{{ csrf_field() }}						
 									</form>
 								</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td colspan="8">{{ $carousel->links() }}</td>
-						</tr>
                     </table>
                 </div>
             </div>
