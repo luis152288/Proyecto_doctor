@@ -13,6 +13,6 @@ class FrontendController extends Controller
      public function index()
     {
     	$carousel = Carousel::get();
-    	return view('welcome', compaq('carousel'));
+    	return view('welcome', compact('carousel'));
     }
 }
