@@ -20,6 +20,7 @@
                     		<th width="15%">IMAGEN</th>
                     		<th>ARCHIVO</th>
                     		<th>DESCRIPCION</th>
+                    		<th>SERVICIO</th>
                     		<th colspan="3" width="10%">ACCIONES</th>
                     	</tr>
 						@foreach($services as $services)
@@ -28,6 +29,7 @@
 								<td><img src="{{ asset('imagenIndex/'.$services->imagen) }}" alt="" class="img-responsive" width="100"></td>
 								<td>{{ $services->imagen}}</td>
 								<td>{{ $services->descripcion}}</td>
+								<td>{{ $services->clase}}</td>
 								<td>
 									<a href="{{ url('/services/' . $services->id . '/edit') }}" class="btn btn-info">
 										<i class="fa fa-edit"></i>

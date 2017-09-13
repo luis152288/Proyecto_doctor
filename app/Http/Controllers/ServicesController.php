@@ -69,6 +69,7 @@ class ServicesController extends Controller
     Services::create([
         'imagen' => $file_route,
         'descripcion' => $request->input('descripcion'),
+        'clase' => $request->input('clase')
         ]);
 
         return redirect('/services')->with('mensaje', 'creacion exitosa');
@@ -128,6 +129,7 @@ class ServicesController extends Controller
         $services->update([
             'imagen'=> $file_route,
             'descripcion' => $request->input('descripcion'),
+            'clase' => $request->input('clase')
             ]);
 
         return redirect('/services')->with('mensaje', 'cambios efectuados exitosamente');

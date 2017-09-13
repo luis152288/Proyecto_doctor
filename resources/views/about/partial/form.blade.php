@@ -1,6 +1,5 @@
 <div class="form-group{{ $errors->has('imagen') ? ' has-error' : '' }}">
-	<input type="text" class="form-control" id="imagen" name="imagen" value="{{ $about->imagen or old('imagen') }}">
-	<input type="file" class="form-control" id="imagen" name="imagen">
+	<input type="file" class="form-control" id="imagen" name="imagen" value="{{ $about->imagen or old('imagen') }}">
 	@if ($errors->has('imagen'))
         <span class="help-block">
         	<strong>{{ $errors->first('imagen') }}</strong>

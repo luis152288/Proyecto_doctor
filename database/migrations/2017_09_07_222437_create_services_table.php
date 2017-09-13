@@ -17,6 +17,7 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->string('imagen');
             $table->string('descripcion');
+            $table->enum('clase', ['heart', 'brain', 'knee', 'bone']);
             $table->timestamps();
         });
     }

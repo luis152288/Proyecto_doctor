@@ -5,8 +5,8 @@
                 <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="header-backup"></div>
                     <div class="carousel-inner" role="listbox">
-                        @foreach($carousel as $carousel)
-                        <div class="item active">
+                        @foreach($carousel as $index => $carousel)
+                        <div class="item @if($index == 0) active @endif">
                             <img src="{{ asset('imagenIndex/'.$carousel->imagen) }}" alt="....">
                             <div class="carousel-caption">
                                 <h1>{{ $carousel->titulo }}</h1>

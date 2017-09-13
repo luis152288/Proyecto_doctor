@@ -9,7 +9,7 @@
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="heart img-responsive" src="{{ asset('imagenIndex/'.$services->imagen) }}" alt="">
+                                <img class="{{ $services->clase}} img-responsive" src="{{ asset('imagenIndex/'.$services->imagen) }}" alt="">
                             </div>
                         </div>
                         <h3>{{ $services->descripcion }}</h3>
