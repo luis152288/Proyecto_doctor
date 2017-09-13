@@ -5,49 +5,22 @@
             <div class="row">
                 <h2>about us</h2>
                 <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
+               @foreach($about as $about)
                 <div class="col-md-4 col-sm-6">
                     <div class="single-about-detail clearfix">
                         <div class="about-img">
-                            <img class="img-responsive" src="img/item1.jpg" alt="">
+                            <img class="img-responsive" src="{{ asset('imagenIndex/'.$about->imagen) }}" alt="">
                         </div>
                         <div class="about-details">
                             <div class="pentagon-text">
-                                <h1>C</h1>
+                                <h1>{{ $about->letra}}</h1>
                             </div>
-                            <h3>Children’s specialist</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+                            <h3>{{ $about->titulo}}</h3>
+                            <p>{{ $about->subtitulo}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-about-detail">
-                        <div class="about-img">
-                            <img class="img-responsive" src="img/item2.jpg" alt="">
-                        </div>
-                        <div class="about-details">
-                            <div class="pentagon-text">
-                                <h1>W</h1>
-                            </div>
-
-                            <h3>Children’s specialist</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-about-detail">
-                        <div class="about-img">
-                            <img class="img-responsive" src="img/item3.jpg" alt="">
-                        </div>
-                        <div class="about-details">
-                            <div class="pentagon-text">
-                                <h1>M</h1>
-                            </div>
-                            <h3>Children’s specialist</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
