@@ -33,4 +33,4 @@ Route::resource('/team', 'TeamController');
 
 Route::get('/', 'FrontendController@index');
 
-Route::post('/enviar', 'ContactController@contacto');
+Route::post('/send-email', 'FrontendController@sendEmail')->name('send-email');

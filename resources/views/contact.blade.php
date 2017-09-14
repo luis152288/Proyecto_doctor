@@ -29,8 +29,9 @@
 					<div class="col-md-6 col-md-offset-1 contact-form">
 						<h3>leave us a message</h3>
 
-						<form class="form" action="/enviar" method="post">
-							{{ csrf_field() }}
+						<form class="form" action="{{ route('send-email') }}" method="post">
+							{!! method_field('POST') !!}
+							{!! csrf_field() !!}
 							<input class="name" type="text" placeholder="Name" name="name" id="name">
 							<input class="email" type="email" placeholder="Email" name="email" id="email">
 							<input class="phone" type="text" placeholder="Phone No:" name="phone" id="phone">
