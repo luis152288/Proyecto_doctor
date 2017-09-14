@@ -19,7 +19,7 @@
                   <div class="col-md-2">
                     <div class="row">
                       <div class="panel-body">
-                        <div class="thumbnail">
+                        <div class="thumbnail text-center">
                           <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
                           <div class="caption">
                             <h3>Carousel</h3>
@@ -33,7 +33,7 @@
                  <div class="col-md-2">
                     <div class="row">
                       <div class="panel-body">
-                        <div class="thumbnail">
+                        <div class="thumbnail text-center">
                           <i class="fa fa-users fa-5x" aria-hidden="true"></i>
                           <div class="caption">
                             <h3>About</h3>
@@ -47,7 +47,7 @@
                  <div class="col-md-2">
                     <div class="row">
                       <div class="panel-body">
-                        <div class="thumbnail">
+                        <div class="thumbnail text-center">
                           <i class="fa fa-cogs fa-5x" aria-hidden="true"></i>
                           <div class="caption">
                             <h3>Services</h3>
@@ -61,7 +61,7 @@
                  <div class="col-md-2">
                     <div class="row">
                       <div class="panel-body">
-                        <div class="thumbnail">
+                        <div class="thumbnail text-center">
                           <i class="fa fa-handshake-o fa-5x" aria-hidden="true"></i>
                           <div class="caption">
                             <h3>Team</h3>
