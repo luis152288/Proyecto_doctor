@@ -75,7 +75,16 @@
 
         @yield('content')
     </div>
-
+    <footer class="panel-footing">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 footer-para">
+                    <p>LEMD &copy;All right reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

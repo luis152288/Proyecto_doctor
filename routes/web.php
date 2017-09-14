@@ -32,3 +32,5 @@ Route::resource('/services', 'ServicesController');
 Route::resource('/team', 'TeamController');
 
 Route::get('/', 'FrontendController@index');
+
+Route::post('/enviar', 'ContactController@contacto');

@@ -29,10 +29,11 @@
 					<div class="col-md-6 col-md-offset-1 contact-form">
 						<h3>leave us a message</h3>
 
-						<form class="form">
-							<input class="name" type="text" placeholder="Name">
-							<input class="email" type="email" placeholder="Email">
-							<input class="phone" type="text" placeholder="Phone No:">
+						<form class="form" action="/enviar" method="post">
+							{{ csrf_field() }}
+							<input class="name" type="text" placeholder="Name" name="name" id="name">
+							<input class="email" type="email" placeholder="Email" name="email" id="email">
+							<input class="phone" type="text" placeholder="Phone No:" name="phone" id="phone">
 							<textarea class="message" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
 							<input class="submit-btn" type="submit" value="SUBMIT">
 						</form>
