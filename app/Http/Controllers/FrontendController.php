@@ -38,7 +38,7 @@ class FrontendController extends Controller
             $message->to('puestopd@gmail.com'); // Correo al que llegara el mensaje           
         });
 
-        return redirect()->route('welcome')->with('mensaje', 'Mensaje Enviado Exitosamente');
+       return redirect('/')->with('mensaje', 'Gracias por contactarte con nosotros, pronto te atenderemos');
 
         
     }
