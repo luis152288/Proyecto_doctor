@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                <div class="col-md-12 col-md-offset-2">
+                <div class="col-md-12 col-md-offset-1">
 
                   <div class="col-md-2">
                     <div class="row">
@@ -71,8 +71,23 @@
                       </div>
                     </div>
                 </div>
-                </div>
 
+                <div class="col-md-2">
+                   <div class="row">
+                     <div class="panel-body">
+                       <div class="thumbnail text-center">
+                         <i class="fa fa-address-book fa-5x" aria-hidden="true"></i>
+                         <div class="caption">
+                           <h3>citas</h3>
+                           <a href="{{ url('/citas')}}" class="btn btn-primary btn-md" role="button">Ingresar</a>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+               </div>
+
+
+                </div>
                 </div>
             </div>
         </div>

@@ -31,6 +31,8 @@ Route::resource('/services', 'ServicesController');
 
 Route::resource('/team', 'TeamController');
 
+Route::resource('/citas', 'CitasController');
+
 Route::get('/', 'FrontendController@index');
 
 Route::post('/send-email', 'FrontendController@sendEmail')->name('send-email');

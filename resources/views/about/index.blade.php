@@ -40,12 +40,12 @@
 								<td>
 									<a href="javascript:void();" class="btn btn-danger"
 										onclick="event.preventDefault();
-                                                     document.getElementById('delete-about-form').submit();">
+                         document.getElementById('delete-about-form').submit();">
 										<i class="fa fa-trash"></i>
 									</a>
 									<form id="delete-about-form" action="{{ url('/about/'.$about->id) }}" method="post">
 										{{ method_field('DELETE')}}
-										{{ csrf_field() }}						
+										{{ csrf_field() }}
 									</form>
 								</td>
 							</tr>

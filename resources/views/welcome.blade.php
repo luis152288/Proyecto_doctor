@@ -8,4 +8,6 @@
 
 @include('team')
 
+@include('citas')
+
 @include('contact')
