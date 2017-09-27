@@ -32,10 +32,10 @@
 								<td class="text-center">
 									<a href="javascript:void();" class="btn btn-danger"
 										onclick="event.preventDefault();
-                            document.getElementById('delete-citas-form').submit();">
+                            document.getElementById('delete-cita-form').submit();">
 										<i class="fa fa-trash"></i>
 									</a>
-									<form id="delete-citas-form" action="{{ url('/citas/'.$citas->id) }}" method="post">
+									<form id="delete-cita-form" action="{{ url('/citas/'.$citas->id) }}" method="post">
 										{!! method_field('DELETE') !!}
 										{{ csrf_field() }}
 									</form>
